@@ -7,7 +7,7 @@ if [ $# -eq 3 ]
 else type=" "
 fi 
 if [ "$type" == "controller" ]
-	then source controller_actions.sh $pass
+	then source controller_actions.sh $pass $IP
 elif [ "$type" == "compute" ]
 	then source compute_actions.sh $pass
 

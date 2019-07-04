@@ -4,6 +4,8 @@ pass=$1
 IP=$2
 #Name of the management interface 
 interface_name="ens3"
+
+#Installing packages and setting parameters
 apt install neutron-linuxbridge-agent
 crudini --set /etc/neutron/neutron.conf DEFAULT	transport_url rabbit://openstack:$pass@controller
 crudini --set /etc/neutron/neutron.conf DEFAULT	auth_strategy keystone
