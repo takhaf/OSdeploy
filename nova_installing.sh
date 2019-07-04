@@ -107,6 +107,10 @@ crudini --set /etc/nova/nova.conf placement user_domain_name  Default
 crudini --set /etc/nova/nova.conf placement auth_url http://controller:5000/v3
 crudini --set /etc/nova/nova.conf placement username  placement
 
+#Setting the refreshing interval for detecting compute nodes
+crudini --set /etc/nova/nova.conf scheduler discover_hosts_in_cells_interval 300
+
+
 
 su -s /bin/sh -c \"nova-manage api_db sync\" nova
 
@@ -123,6 +127,6 @@ service nova-api restart
 service nova-consoleauth restart
 service nova-scheduler restart
 service nova-conductor restart
-service nova-novncproxy restarts
+service nova-novncproxy restart
 
 
