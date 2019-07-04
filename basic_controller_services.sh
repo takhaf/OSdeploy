@@ -1,7 +1,8 @@
 #Default password  for rabbitmq
-pass='fall'
-if [$1 -ne ""]
-	then pass=$1
+if [$# -gt 2]
+	then
+		pass=$1
+		mgt_network_address=$2
 fi
 
 #Installing chrony for NTP service
@@ -10,7 +11,6 @@ sleep 2
 apt install chrony
 
 NTP_SERVER="mouette.rd.francetelecom.fr"
-mgt_network_address=$1
 echo "server $NTP_SERVER iburst
 allow $mgt_network_address" >> /etc/chrony/chrony.conf
 service chrony restart
