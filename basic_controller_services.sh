@@ -76,6 +76,11 @@ systemctl enable etcd
 systemctl start etcd
 
 
+apt install software-properties-common
+add-apt-repository cloud-archive:queens
+apt install python-openstackclient
+
+
 #Installing crudini
 
 apt install crudini
