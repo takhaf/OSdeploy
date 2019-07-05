@@ -1,5 +1,5 @@
 #Default password  for rabbitmq
-if [$# -gt 2]
+if [ $# -eq 2 ]
 	then
 		pass=$1
 		mgt_network_address=$2
