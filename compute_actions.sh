@@ -10,3 +10,4 @@ mgt_interface=$3
 
 source nova_compute_installing.sh $pass $IP
 source neutron_compute_installing.sh $pass $IP $mgt_interface
+

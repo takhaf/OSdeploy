@@ -4,13 +4,15 @@ set +x
 pass=$1
 
 #Creating the keystone database user and granting privileges
-mysql <<END 
+mysql -u root --password=$pass <<EOF 
+
 CREATE DATABASE keystone;
 GRANT ALL PRIVILEGES ON keystone.* TO \'keystone\'@\'localhost\' \
 IDENTIFIED BY \'$pass\';
 GRANT ALL PRIVILEGES ON keystone.* TO \'keystone\'@\'%\' \
 IDENTIFIED BY \'$pass\';
-END
+
+EOF
 
 #Installing the package
 apt install keystone  apache2 libapache2-mod-wsgi

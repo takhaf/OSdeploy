@@ -3,7 +3,7 @@ set +x
 pass=$1
 mgt_network_address=$2
 #Creating the databases and granting the privileges to the neutron profile
-mysql -u root --password=$pass<<END
+mysql -u root --password=$pass<<EOF
 CREATE DATABASE nova_api;
 CREATE DATABASE nova;
 CREATE DATABASE nova_cell0;
@@ -26,7 +26,7 @@ IDENTIFIED BY \'$pass\';
 GRANT ALL PRIVILEGES ON nova_cell0.* TO \'nova\'@\'%\' \
 IDENTIFIED BY \'$pass\';
 
-END
+EOF
 
 
 #Defining services and endpoints

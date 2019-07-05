@@ -16,6 +16,13 @@ fi
 #Setting the controller IP for DNS resolution
 echo "controller      $IP" >> /etc/hosts
 
+#Adding the OpenStack repository for Ubuntu
+apt install software-properties-common
+add-apt-repository cloud-archive:queens
+apt install python-openstackclient
+
+
+
 if [ "$type" == "controller" ]
 	then source controller_actions.sh $pass $IP
 elif [ "$type" == "compute" ]
