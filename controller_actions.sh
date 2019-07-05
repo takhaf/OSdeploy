@@ -6,6 +6,8 @@ source basic_controller_services.sh $pass $IP
 
 source keystone_installing.sh $pass 
 
+source nova_installing.sh $pass $IP
+
 source neutron_installing.sh $pass
 
-source nova_installing.sh $pass $IP
+
