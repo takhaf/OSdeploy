@@ -1,11 +1,17 @@
+#!/bin/bash
 set +x 
 
+#install.sh "password" "IP" "type"
 pass=$1
 IP=$2
 if [ $# -eq 3 ]
      then type=$3
-else type=" "
+#controller is the default type of node 
+else type="controller"
 fi 
+#Setting the controller IP for DNS resolution
+echo "controller      $IP" >> /etc/hosts
+
 if [ "$type" == "controller" ]
 	then source controller_actions.sh $pass $IP
 elif [ "$type" == "compute" ]

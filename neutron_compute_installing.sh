@@ -3,7 +3,12 @@ set +x
 pass=$1
 IP=$2
 #Name of the management interface 
-interface_name="ens3"
+
+#If it is not defined in the parameters we retrieve it.
+if [ $# -eq 3 ] 
+	then interface_name=$3
+else interface_name=`awk '/inet.*brd/{print $NF;exit}'`
+fi
 
 #Installing packages and setting parameters
 apt install neutron-linuxbridge-agent
