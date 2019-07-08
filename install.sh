@@ -1,6 +1,7 @@
 #!/bin/bash
 set +x 
 
+source admin-openrc
 #install.sh   "password"   "IP"   "type"   ["mgt_interface name"]
 pass=$1
 IP=$2
