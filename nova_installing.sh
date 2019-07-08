@@ -17,7 +17,7 @@ IDENTIFIED BY \'$pass\';
 GRANT ALL PRIVILEGES ON nova.* TO \'nova\'@\'localhost\' \
 IDENTIFIED BY \'$pass\';
 
-GRANT ALL PRIVILEGES ON nova_cell0.* TO \'nova\'@\'%\' \
+GRANT ALL PRIVILEGES ON nova.* TO \'nova\'@\'%\' \
 IDENTIFIED BY \'$pass\';
 
 GRANT ALL PRIVILEGES ON nova_cell0.* TO \'nova\'@\'localhost\' \
@@ -116,7 +116,7 @@ su -s /bin/sh -c \"nova-manage api_db sync\" nova
 
 su -s /bin/sh -c \"nova-manage cell_v2 map_cell0\" nova
 
-su -s /bin/sh -c \"nova-manage cell_v2 create_cell --name=cell1 --verbose\" nova
+su -s /bin/sh -c "\"nova-manage cell_v2 create_cell --name=cell1 --verbose\"" nova
 
 
 su -s /bin/sh -c \"nova-manage db sync\" nova
