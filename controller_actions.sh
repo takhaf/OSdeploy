@@ -8,6 +8,8 @@ source keystone_installing.sh $pass
 
 source nova_installing.sh $pass $IP
 
+source glance_installing.sh $pass
+
 source neutron_installing.sh $pass
 
 
