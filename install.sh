@@ -23,7 +23,7 @@ apt install python-openstackclient
 
 
 if [ "$type" == "controller" ]
-	then source controller_actions.sh $pass $IP $mgt_interfac
+	then source controller_actions.sh $pass $IP $mgt_interface
 elif [ "$type" == "compute" ]
 	then source compute_actions.sh $pass $IP $mgt_interface
 
