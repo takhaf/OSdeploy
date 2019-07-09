@@ -51,8 +51,7 @@ echo "Installing memcached ..."
 sleep 2
 apt install memcached python-memcache
 
-echo "-l $mgt_network_address"
- > /etc/memcached.conf
+echo "-l $mgt_network_address"  > /etc/memcached.conf
 
 service memcached restart
 

@@ -6,10 +6,10 @@ pass=$1
 
 mysql -u root --password=$pass<<END
 CREATE DATABASE glance;
-GRANT ALL PRIVILEGES ON glance.* TO \'glance\'@\'localhost\' \
-IDENTIFIED BY \'$pass\';
-GRANT ALL PRIVILEGES ON glance.* TO \'glance\'@\'%\' \
-IDENTIFIED BY \'$pass\';
+GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'localhost' 
+IDENTIFIED BY '$pass';
+GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' 
+IDENTIFIED BY '$pass';
 END
 
 #creating the glance user and granting the admin privilege in the domain

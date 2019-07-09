@@ -4,14 +4,12 @@ set +x
 pass=$1
 
 #Creating the keystone database user and granting privileges
-mysql -u root --password=$pass <<EOF 
-
+mysql <<EOF 
 CREATE DATABASE keystone;
-GRANT ALL PRIVILEGES ON keystone.* TO \'keystone\'@\'localhost\' \
-IDENTIFIED BY \'$pass\';
-GRANT ALL PRIVILEGES ON keystone.* TO \'keystone\'@\'%\' \
-IDENTIFIED BY \'$pass\';
-
+GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' 
+IDENTIFIED BY '$pass';
+GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' 
+IDENTIFIED BY '$pass';
 EOF
 
 #Installing the package
@@ -19,7 +17,7 @@ apt install keystone  apache2 libapache2-mod-wsgi
 crudini --set /etc/keystone/keystone.conf database connection  mysql+pymysql://keystone:$pass@controller/keystone
 
 #Configuring INI parameters
-crudini --set /etc/keystone/keystone.conf token "provider fernet"
+crudini --set /etc/keystone/keystone.conf token provider fernet
 
 su -s /bin/sh -c "keystone-manage db_sync" keystone
 
