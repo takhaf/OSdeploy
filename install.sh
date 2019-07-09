@@ -5,12 +5,10 @@ source admin-openrc
 #install.sh   "password"   "IP"   "type"   ["mgt_interface name"]
 pass=$1
 IP=$2
-if [ $# -eq 3 ]
-     then type=$3
-fi
-if [ $# -eq 4 ]
-     then mgt_interface=$4
-fi
+
+type=$3
+mgt_interface=$4
+
 #controller is the default type of node 
 #else type="controller"
 
@@ -25,7 +23,7 @@ apt install python-openstackclient
 
 
 if [ "$type" == "controller" ]
-	then source controller_actions.sh $pass $IP
+	then source controller_actions.sh $pass $IP $mgt_interfac
 elif [ "$type" == "compute" ]
 	then source compute_actions.sh $pass $IP $mgt_interface
 
