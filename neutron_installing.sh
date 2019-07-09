@@ -40,11 +40,11 @@ apt install neutron-server neutron-plugin-ml2 \
 
 crudini --set /etc/neutron/neutron.conf database connection  mysql+pymysql://neutron:$pass@controller/neutron
 
-crudini --set /etc/neutron/neutron.conf default core_plugin ml2
-crudini --set /etc/neutron/neutron.conf default service_plugins router
-crudini --set /etc/neutron/neutron.conf default allow_overlapping_ips true
-crudini --set /etc/neutron/neutron.conf default transport_url rabbit://openstack:$pass@controller
-crudini --set /etc/neutron/neutron.conf default auth_strategy keystone
+crudini --set /etc/neutron/neutron.conf DEFAULT core_plugin ml2
+crudini --set /etc/neutron/neutron.conf DEFAULT service_plugins router
+crudini --set /etc/neutron/neutron.conf DEFAULT allow_overlapping_ips true
+crudini --set /etc/neutron/neutron.conf DEFAULT transport_url rabbit://openstack:$pass@controller
+crudini --set /etc/neutron/neutron.conf DEFAULT auth_strategy keystone
 
 crudini --set /etc/neutron/neutron.conf keystone_authtoken auth_uri http://controller:5000
 crudini --set /etc/neutron/neutron.conf keystone_authtoken auth_url http://controller:5000
@@ -56,8 +56,8 @@ crudini --set /etc/neutron/neutron.conf keystone_authtoken project_name service
 crudini --set /etc/neutron/neutron.conf keystone_authtoken username neutron
 crudini --set /etc/neutron/neutron.conf keystone_authtoken password $pass
 
-crudini --set /etc/neutron/neutron.conf default notify_nova_on_port_status_changes true
-crudini --set /etc/neutron/neutron.conf default notify_nova_on_port_data_changes true
+crudini --set /etc/neutron/neutron.conf DEFAULT notify_nova_on_port_status_changes true
+crudini --set /etc/neutron/neutron.conf DEFAULT notify_nova_on_port_data_changes true
 
 
 crudini --set /etc/neutron/neutron.conf nova auth_url http://controller:5000
