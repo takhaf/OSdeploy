@@ -14,3 +14,6 @@ source nova_installing.sh $pass $IP
 source neutron_installing.sh $pass $IP $mgt_interface
 
 
+
+
+

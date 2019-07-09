@@ -70,7 +70,7 @@ ETCD_INITIAL_ADVERTISE_PEER_URLS=\"http://$mgt_network_address:2380\"
 ETCD_ADVERTISE_CLIENT_URLS=\"http://$mgt_network_address:2379\"
 ETCD_LISTEN_PEER_URLS=\"http://0.0.0.0:2380\"
 ETCD_LISTEN_CLIENT_URLS=\"http://$mgt_network_address:2379\"
-" > /etc/default/etcd
+"> /etc/default/etcd
 
 systemctl enable etcd
 systemctl start etcd
