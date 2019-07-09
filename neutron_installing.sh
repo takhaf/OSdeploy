@@ -5,11 +5,11 @@ pass=$1
 mysql -u root --password=$pass	<<END
 CREATE DATABASE neutron;
 
-GRANT ALL PRIVILEGES ON neutron.* TO \'neutron\'@\'localhost\' \
-IDENTIFIED BY \'$pass\';
+GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'localhost' 
+IDENTIFIED BY '$pass';
 
-GRANT ALL PRIVILEGES ON neutron.* TO \'neutron\'@\'%\' \
-IDENTIFIED BY \'$pass\';
+GRANT ALL PRIVILEGES ON neutron.* TO 'neutron'@'%' 
+IDENTIFIED BY '$pass';
 END
 
 openstack user create --domain default --password $pass neutron
@@ -27,6 +27,11 @@ openstack endpoint create --region RegionOne \
 openstack endpoint create --region RegionOne \
   network admin http://controller:9696
 
+#Installing packages 
+apt install neutron-server neutron-plugin-ml2 \
+  neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent \
+  neutron-metadata-agent
+
 crudini --set  /etc/neutron/metadata_agent.ini DEFAULT nova_metadata_host controller
 crudini --set  /etc/neutron/metadata_agent.ini DEFAULT metadata_proxy_shared_secret $pass
 
@@ -43,8 +48,8 @@ crudini --set  /etc/nova/nova.conf neutron password  $pass
 crudini --set  /etc/nova/nova.conf neutron service_metadata_proxy true
 crudini --set  /etc/nova/nova.conf neutron metadata_proxy_shared_secret $pass
 
-su -s /bin/sh -c \"neutron-db-manage --config-file /etc/neutron/neutron.conf \
-  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head\" neutron
+su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
+  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
 
 service nova-api restart
 service neutron-server restart

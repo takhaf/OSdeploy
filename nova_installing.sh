@@ -8,23 +8,23 @@ CREATE DATABASE nova_api;
 CREATE DATABASE nova;
 CREATE DATABASE nova_cell0;
 
-GRANT ALL PRIVILEGES ON nova_api.* TO \'nova\'@\'localhost\' \
-IDENTIFIED BY \'$pass\';
+GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'localhost' 
+IDENTIFIED BY '$pass';
 
-GRANT ALL PRIVILEGES ON nova_api.* TO \'nova\'@\'%\' \
-IDENTIFIED BY \'$pass\';
+GRANT ALL PRIVILEGES ON nova_api.* TO 'nova'@'%' 
+IDENTIFIED BY '$pass';
 
-GRANT ALL PRIVILEGES ON nova.* TO \'nova\'@\'localhost\' \
-IDENTIFIED BY \'$pass\';
+GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'localhost' 
+IDENTIFIED BY '$pass';
 
-GRANT ALL PRIVILEGES ON nova.* TO \'nova\'@\'%\' \
-IDENTIFIED BY \'$pass\';
+GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' 
+IDENTIFIED BY '$pass';
 
-GRANT ALL PRIVILEGES ON nova_cell0.* TO \'nova\'@\'localhost\' \
-IDENTIFIED BY \'$pass\';
+GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'localhost' 
+IDENTIFIED BY '$pass';
 
-GRANT ALL PRIVILEGES ON nova_cell0.* TO \'nova\'@\'%\' \
-IDENTIFIED BY \'$pass\';
+GRANT ALL PRIVILEGES ON nova_cell0.* TO 'nova'@'%' 
+IDENTIFIED BY '$pass';
 
 EOF
 
@@ -112,14 +112,14 @@ crudini --set /etc/nova/nova.conf scheduler discover_hosts_in_cells_interval 300
 
 
 
-su -s /bin/sh -c \"nova-manage api_db sync\" nova
+su -s /bin/sh -c "nova-manage api_db sync" nova
 
-su -s /bin/sh -c \"nova-manage cell_v2 map_cell0\" nova
+su -s /bin/sh -c "nova-manage cell_v2 map_cell0" nova
 
-su -s /bin/sh -c "\"nova-manage cell_v2 create_cell --name=cell1 --verbose\"" nova
+su -s /bin/sh -c "nova-manage cell_v2 create_cell --name=cell1 --verbose" nova
 
 
-su -s /bin/sh -c \"nova-manage db sync\" nova
+su -s /bin/sh -c "nova-manage db sync" nova
 
 nova-manage cell_v2 list_cells
 #Finally we restart all our services..
