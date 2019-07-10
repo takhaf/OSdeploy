@@ -33,7 +33,14 @@ openstack endpoint create --region RegionOne \
 #Installing the package
 apt install glance
 
+#Moving in lightened conf files
+mv conf_files/etc_glance_glance-api.conf /etc/glance/glance-api.conf
+mv conf_files/etc_glance_glance-registry.conf /etc/glance/glance-registry.conf
+
+
 #Setting INI parameters
+
+
 
 crudini --set /etc/glance/glance-api.conf database connection "mysql+pymysql://glance:$pass@controller/glance"
 

@@ -1,1 +1,10 @@
-This is my first git file in this repo!!
+This project is about the automation of OpenStack deployment.
+The entry point is the install.sh script.
+
+
+-----------------How to Use IT ? --------------------
+execute the script install.sh in the project directory like  this : 
+install.sh  'global password '    'IP address '  'controller/compute'  'Management interface'
+
+It installs all the necessary components in the OpenStack architecture.
+
