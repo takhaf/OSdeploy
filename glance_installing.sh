@@ -35,7 +35,7 @@ apt install glance
 
 #Setting INI parameters
 
-crudini --set /etc/glance/glance-api.conf database connection \"mysql+pymysql://glance:$pass@controller/glance\"
+crudini --set /etc/glance/glance-api.conf database connection "mysql+pymysql://glance:$pass@controller/glance"
 
 crudini --set /etc/glance/glance-api.conf keystone_authtoken auth_uri  http://controller:5000
 crudini --set /etc/glance/glance-api.conf keystone_authtoken auth_url  http://controller:5000
