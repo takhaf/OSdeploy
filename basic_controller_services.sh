@@ -8,7 +8,7 @@ fi
 #Installing chrony for NTP service
 echo "Installing chrony ..."
 sleep 2
-apt install chrony
+apt install chrony -y 
 
 NTP_SERVER="mouette.rd.francetelecom.fr"
 echo "server $NTP_SERVER iburst
@@ -21,7 +21,7 @@ service chrony restart
 echo "Installing Maria DB ..."
 sleep 2
 
-apt install mariadb-server python-pymysql
+apt install mariadb-server python-pymysql -y
 
 echo "[mysqld]
 bind-address = $mgt_network_address
@@ -34,14 +34,24 @@ character-set-server = utf8
 
 
 service mysql restart
-mysql_secure_installation
+
+#Automating the mysql_secure_installation script
+myql --user=root <<EOF
+UPDATE mysql.user SET Password=PASSWORD('${db_root_password}') WHERE User='root';
+DELETE FROM mysql.user WHERE User='';
+DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+DROP DATABASE IF EXISTS test;
+DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
+FLUSH PRIVILEGES;
+EOF
+
 
 #Installing rabbitmq server
 
 echo "Installing rabbitmq ..."
 sleep 2
 
-apt install rabbitmq-server
+apt install -y rabbitmq-server 
 rabbitmqctl add_user openstack $pass
 rabbitmqctl set_permissions openstack ".*" ".*" ".*"
 
@@ -49,7 +59,7 @@ rabbitmqctl set_permissions openstack ".*" ".*" ".*"
 
 echo "Installing memcached ..."
 sleep 2
-apt install memcached python-memcache
+apt install -y memcached python-memcache 
 
 echo "-l $mgt_network_address"  > /etc/memcached.conf
 
@@ -59,7 +69,7 @@ service memcached restart
 #Installing etcd
 
 echo "Installing etcd ..."
-apt install etcd
+apt install -y etcd
 echo "
 ETCD_NAME=\"controller\"
 ETCD_DATA_DIR=\"/var/lib/etcd\"
@@ -78,5 +88,5 @@ systemctl start etcd
 
 #Installing crudini
 
-apt install crudini
+apt install -y crudini
 

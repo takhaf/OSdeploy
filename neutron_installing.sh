@@ -31,7 +31,7 @@ openstack endpoint create --region RegionOne \
   network admin http://controller:9696
 
 #Installing packages and configuring network option 2
-apt install neutron-server neutron-plugin-ml2 \
+apt install -y neutron-server neutron-plugin-ml2 \
   neutron-linuxbridge-agent neutron-l3-agent neutron-dhcp-agent \
   neutron-metadata-agent
 

@@ -31,7 +31,7 @@ openstack endpoint create --region RegionOne \
   image admin http://controller:9292
 
 #Installing the package
-apt install glance
+apt install -y glance
 
 #Moving in lightened conf files
 mv conf_files/etc_glance_glance-api.conf /etc/glance/glance-api.conf

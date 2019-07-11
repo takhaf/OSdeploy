@@ -20,9 +20,9 @@ fi
 echo "$IP   controller" >> /etc/hosts
 
 #Adding the OpenStack repository for Ubuntu
-apt install software-properties-common
+apt install software-properties-common -y 
 add-apt-repository cloud-archive:queens
-apt install python-openstackclient
+apt install python-openstackclient -y
 
 
 

@@ -7,7 +7,7 @@ IP=$2
 interface_name=$3
 
 #Installing packages and setting parameters
-apt install neutron-linuxbridge-agent
+apt install neutron-linuxbridge-agent -y
 
 #We move in the lightened conf file
 mv conf_files/etc_neutron_plugins_ml2_linuxbridge_agent.ini /etc/neutron/plugins/ml2/linuxbridge_agent.ini

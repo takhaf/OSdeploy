@@ -61,7 +61,7 @@ openstack endpoint create --region RegionOne placement admin http://controller:8
 
 
 #Installing the packages 
-apt install nova-api nova-conductor nova-consoleauth \
+apt install -y nova-api nova-conductor nova-consoleauth \
   nova-novncproxy nova-scheduler nova-placement-api
 
 #Moving in lightened conf files

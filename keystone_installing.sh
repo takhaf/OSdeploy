@@ -13,7 +13,7 @@ IDENTIFIED BY '$pass';
 EOF
 
 #Installing the package
-apt install keystone  apache2 libapache2-mod-wsgi
+apt install -y keystone  apache2 libapache2-mod-wsgi
 crudini --set /etc/keystone/keystone.conf database connection  mysql+pymysql://keystone:$pass@controller/keystone
 
 #Configuring INI parameters

@@ -3,7 +3,7 @@ set +x
 pass=$1
 IP=$2
 #Installing nova compute package
-apt install nova-compute
+apt install -y nova-compute
 
 #Moving in lightened conf files
 mv conf_files/etc_nova_nova-compute.conf /etc/nova/nova-compute.conf
