@@ -3,10 +3,7 @@ set +x
 
 pass=$1
 IP=$2
-if [ $# -eq 3 ] 
-	then interface_name=$3
-else interface_name=`ip addr show | awk '/inet.*brd/{print $NF;exit}'`
-fi
+interface_name=$3
 
 mysql -u root --password=$pass	<<END
 CREATE DATABASE neutron;

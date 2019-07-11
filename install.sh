@@ -7,7 +7,11 @@ pass=$1
 IP=$2
 
 type=$3
-mgt_interface=$4
+#If the management interface is not specified by the user we retrieve it !
+if [ $# -gt 3 ] 
+	then mgt_interface=$4
+else mgt_interface=`ip addr show | awk '/inet.*brd/{print $NF;exit}'`
+fi
 
 #controller is the default type of node 
 #else type="controller"
