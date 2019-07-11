@@ -36,7 +36,7 @@ character-set-server = utf8
 service mysql restart
 
 #Automating the mysql_secure_installation script
-myql --user=root <<EOF
+mysql -u root <<EOF
 UPDATE mysql.user SET Password=PASSWORD('${db_root_password}') WHERE User='root';
 DELETE FROM mysql.user WHERE User='';
 DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');

@@ -4,7 +4,12 @@ set +x
 source admin-openrc
 #install.sh   "password"   "IP"   "type"   ["mgt_interface name"]
 pass=$1
-IP=$2
+
+#If the IP address is not given we retrieve it
+if [ $# -gt 1 ]
+	then IP=$2
+else IP=`hostname -I |awk '{print $1}'`
+fi
 
 type=$3
 #If the management interface is not specified by the user we retrieve it !
