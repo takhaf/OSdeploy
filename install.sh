@@ -13,11 +13,9 @@ if [ $# -gt 3 ]
 else mgt_interface=`ip addr show | awk '/inet.*brd/{print $NF;exit}'`
 fi
 
-#controller is the default type of node 
-#else type="controller"
 
 #Setting the controller IP for DNS resolution
-echo "$IP   controller" >> /etc/hosts
+echo "$IP    controller ">> /etc/hosts
 
 #Adding the OpenStack repository for Ubuntu
 apt install software-properties-common -y 
