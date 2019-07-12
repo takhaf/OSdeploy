@@ -5,13 +5,12 @@ wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
 
 openstack image create "cirros" \
   --file cirros-0.4.0-x86_64-disk.img \
-  --disk-format qcow2 --container-format bare \
-  --public
+  --disk-format qcow2 --container-format bare
 
 #We create the provider network
 openstack network create  --share --external \
  --provider-physical-network provider \
- --provider-network-type flat provider
+ --provider-network-type flat provider_network
 
 #The selfservice network
 openstack network create selfservice1
@@ -26,14 +25,14 @@ openstack subnet create --network selfservice2 \
   --subnet-range 2.2.2.0/24 selfservice2
 
 #Creating the router
-openstack router create router
+openstack router create test_router
 
 #Adding the two subnets in te router
-openstack router add subnet router selfservice1
-openstack router add subnet router selfservice2
+openstack router add subnet test_router selfservice1
+openstack router add subnet test_router selfservice2
 
 #Setting the gateway to the provider network
-openstack router set router --external-gateway provider
+openstack router set test_router --external-gateway provider_network
 
 
 #We create a flavor for our cirros VMS
@@ -41,8 +40,8 @@ openstack flavor create --id 0 --vcpus 1 --ram 64 --disk 1 m1.nano
 
 
 #Generating a keypair for ssh communication
-ssh-keygen -q -N "" -f mykey
-openstack keypair create --public-key mykey mykey
+ssh-keygen -q -N "" -f my_test_key
+openstack keypair create --public-key my_test_key my_test_key
 
 
 #Creating a new security group and adding rules
@@ -57,10 +56,10 @@ net_id2=`openstack network list |awk '/.*selfservice2/{print $2}'`
 #We create the servers
 openstack server create --flavor m1.nano --image cirros \
   --nic net-id=$net_id1 --security-group my_security_group \
-  --key-name mykey selfservice-instance1
+  --key-name my_test_key test_selfservice-instance1
 
 openstack server create --flavor m1.nano --image cirros \
   --nic net-id=$net_id2 --security-group my_security_group \
-  --key-name mykey selfservice-instance2
+  --key-name my_test_key test_selfservice-instance2
 
 

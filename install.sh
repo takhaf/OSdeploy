@@ -2,16 +2,18 @@
 set +x 
 
 source admin-openrc
-#install.sh   "password"   "IP"   "type"   ["mgt_interface name"]
+#install.sh   "password"    "type"    ["IP"] ["mgt_interface name"]
 pass=$1
 
+type=$2
+
 #If the IP address is not given we retrieve it
-if [ $# -gt 1 ]
-	then IP=$2
+if [ $# -gt 2 ]
+	then IP=$3
 else IP=`hostname -I |awk '{print $1}'`
 fi
 
-type=$3
+
 #If the management interface is not specified by the user we retrieve it !
 if [ $# -gt 3 ] 
 	then mgt_interface=$4
@@ -24,15 +26,18 @@ echo "$IP    controller ">> /etc/hosts
 
 #Adding the OpenStack repository for Ubuntu
 apt install software-properties-common -y 
-add-apt-repository cloud-archive:queens
+add-apt-repository cloud-archive:queens -y
 apt install python-openstackclient -y
 
 
 
-if [ "$type" == "controller" ]
+if   [ "$type" == "controller" ]
 	then source controller_actions.sh $pass $IP $mgt_interface
 elif [ "$type" == "compute" ]
 	then source compute_actions.sh $pass $IP $mgt_interface
-
+elif [ "$type" == "both" ]
+	then
+ 	 source controller_actions.sh $pass $IP $mgt_interface
+	 source compute_actions.sh $pass $IP $mgt_interface
 else echo "Unknown node type"
 fi
