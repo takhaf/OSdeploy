@@ -1,6 +1,11 @@
-IP=$1
 
-#THe cirros image we use for our VMs
+if [ $# -eq 1 ]
+	then IP=$1
+else IP=`hostname -I |awk '{print $1}'`
+fi
+
+source admin-openrc
+#The cirros image we use for our VMs
 wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
 
 openstack image create "cirros" \
@@ -41,7 +46,7 @@ openstack flavor create --id 0 --vcpus 1 --ram 64 --disk 1 m1.nano
 
 #Generating a keypair for ssh communication
 ssh-keygen -q -N "" -f my_test_key
-openstack keypair create --public-key my_test_key my_test_key
+openstack keypair create --public-key my_test_key.pub my_test_key
 
 
 #Creating a new security group and adding rules
