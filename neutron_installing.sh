@@ -36,12 +36,12 @@ apt install -y neutron-server neutron-plugin-ml2 \
   neutron-metadata-agent
 
 #Using the lightened conf files instead 
-mv conf_files/etc_neutron_neutron.conf /etc/neutron/neutron.conf
-mv conf_files/etc_neutron_plugins_ml2_ml2_conf.ini /etc/neutron/plugins/ml2/ml2_conf.ini
-mv conf_files/etc_neutron_plugins_ml2_linuxbridge_agent.ini /etc/neutron/plugins/ml2/linuxbridge_agent.ini
-mv conf_files/etc_neutron_l3_agent.ini /etc/neutron/l3_agent.ini
-mv conf_files/etc_neutron_dhcp_agent.ini /etc/neutron/dhcp_agent.ini
-mv conf_files/etc_neutron_metadata_agent.ini /etc/neutron/metadata_agent.ini
+cp conf_files/etc_neutron_neutron.conf /etc/neutron/neutron.conf
+cp conf_files/etc_neutron_plugins_ml2_ml2_conf.ini /etc/neutron/plugins/ml2/ml2_conf.ini
+cp conf_files/etc_neutron_plugins_ml2_linuxbridge_agent.ini /etc/neutron/plugins/ml2/linuxbridge_agent.ini
+cp conf_files/etc_neutron_l3_agent.ini /etc/neutron/l3_agent.ini
+cp conf_files/etc_neutron_dhcp_agent.ini /etc/neutron/dhcp_agent.ini
+cp conf_files/etc_neutron_metadata_agent.ini /etc/neutron/metadata_agent.ini
 
 
 crudini --set /etc/neutron/neutron.conf database connection  mysql+pymysql://neutron:$pass@controller/neutron

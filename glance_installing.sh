@@ -34,8 +34,8 @@ openstack endpoint create --region RegionOne \
 apt install -y glance
 
 #Moving in lightened conf files
-mv conf_files/etc_glance_glance-api.conf /etc/glance/glance-api.conf
-mv conf_files/etc_glance_glance-registry.conf /etc/glance/glance-registry.conf
+cp conf_files/etc_glance_glance-api.conf /etc/glance/glance-api.conf
+cp conf_files/etc_glance_glance-registry.conf /etc/glance/glance-registry.conf
 
 
 #Setting INI parameters

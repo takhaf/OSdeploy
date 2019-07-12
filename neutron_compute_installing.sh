@@ -10,7 +10,7 @@ interface_name=$3
 apt install neutron-linuxbridge-agent -y
 
 #We move in the lightened conf file
-mv conf_files/etc_neutron_plugins_ml2_linuxbridge_agent.ini /etc/neutron/plugins/ml2/linuxbridge_agent.ini
+cp conf_files/etc_neutron_plugins_ml2_linuxbridge_agent.ini /etc/neutron/plugins/ml2/linuxbridge_agent.ini
 
 crudini --set /etc/neutron/neutron.conf DEFAULT	transport_url rabbit://openstack:$pass@controller
 crudini --set /etc/neutron/neutron.conf DEFAULT	auth_strategy keystone

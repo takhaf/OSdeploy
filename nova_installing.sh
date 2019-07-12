@@ -65,7 +65,7 @@ apt install -y nova-api nova-conductor nova-consoleauth \
   nova-novncproxy nova-scheduler nova-placement-api
 
 #Moving in lightened conf files
-mv conf_files/etc_nova_nova.conf /etc/nova/nova.conf
+cp conf_files/etc_nova_nova.conf /etc/nova/nova.conf
 
 
 

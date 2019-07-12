@@ -14,6 +14,7 @@ EOF
 
 #Installing the package
 apt install -y keystone  apache2 libapache2-mod-wsgi
+cp conf_files/etc_keystone_keystone.conf /etc/keystone/keystone.conf
 crudini --set /etc/keystone/keystone.conf database connection  mysql+pymysql://keystone:$pass@controller/keystone
 
 #Configuring INI parameters

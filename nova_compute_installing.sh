@@ -6,7 +6,7 @@ IP=$2
 apt install -y nova-compute
 
 #Moving in lightened conf files
-mv conf_files/etc_nova_nova-compute.conf /etc/nova/nova-compute.conf
+cp conf_files/etc_nova_nova-compute.conf /etc/nova/nova-compute.conf
 
 
 crudini --set /etc/nova/nova.conf DEFAULT transport_url rabbit://openstack:$pass@controller
