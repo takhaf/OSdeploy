@@ -8,7 +8,7 @@ gateway_IP=`route -n |awk '/^0.0.0.0.*/ {print $2}'`
 
 source admin-openrc
 #The cirros image we use for our VMs
-#wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
+wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
 
 openstack image create "cirros" \
   --file cirros-0.4.0-x86_64-disk.img \
