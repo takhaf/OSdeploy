@@ -84,9 +84,3 @@ ETCD_LISTEN_CLIENT_URLS=\"http://$mgt_network_address:2379\"
 
 systemctl enable etcd
 systemctl start etcd
-
-
-#Installing crudini
-
-apt install -y crudini
-

@@ -27,9 +27,11 @@ echo "$IP    controller ">> /etc/hosts
 #Adding the OpenStack repository for Ubuntu
 apt install software-properties-common -y 
 add-apt-repository cloud-archive:queens -y
+apt update
 apt install python-openstackclient -y
 
-
+#Tool to manipulate INI files
+apt install -y crudini
 
 if   [ "$type" == "controller" ]
 	then source controller_actions.sh $pass $IP $mgt_interface

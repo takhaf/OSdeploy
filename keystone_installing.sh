@@ -33,6 +33,5 @@ keystone-manage bootstrap --bootstrap-password $pass \
 echo "ServerName controller" >> /etc/apache2/apache2.conf
 
 service apache2 restart
-source admin-openrc
 openstack project create --domain default \
   --description "Service Project" service

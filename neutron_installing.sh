@@ -1,6 +1,6 @@
 
 set +x
-
+source admin-openrc
 pass=$1
 IP=$2
 interface_name=$3

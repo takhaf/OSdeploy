@@ -1,4 +1,6 @@
 set +x
+source admin-openrc
+
 #Takes password and ip address as parameters
 pass=$1
 mgt_network_address=$2
