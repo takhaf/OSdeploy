@@ -4,9 +4,11 @@ if [ $# -eq 1 ]
 else IP=`hostname -I |awk '{print $1}'`
 fi
 
+gateway_IP=`route -n |awk '/^0.0.0.0.*/ {print $2}'`
+
 source admin-openrc
 #The cirros image we use for our VMs
-wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
+#wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
 
 openstack image create "cirros" \
   --file cirros-0.4.0-x86_64-disk.img \
@@ -16,6 +18,11 @@ openstack image create "cirros" \
 openstack network create  --share --external \
  --provider-physical-network provider \
  --provider-network-type flat provider_network
+
+openstack subnet create --network provider_network \
+ --allocation-pool start=192.168.122.10,end=192.168.122.100 \
+ --dns-nameserver 192.168.122.1 --gateway 192.168.122.1 \
+ --subnet-range 192.168.122.0/24 provider_network
 
 #The selfservice network
 openstack network create selfservice1

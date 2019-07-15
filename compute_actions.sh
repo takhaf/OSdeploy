@@ -1,7 +1,7 @@
 set +x 
 
 #Installing and configuring the NTP service
-apt install chrony
+apt install -y chrony
 echo "server controller iburst" >> /etc/chrony/chrony.conf
 service chrony restart
 pass=$1
