@@ -1,3 +1,4 @@
+#!/bin/bash
 set +x
 
 source admin-openrc
@@ -28,6 +29,8 @@ openstack network delete selfservice2
 openstack flavor delete m1.nano
  
 rm cirros-0.4.0-x86_64-disk.img
+rm my_test_key my_test_key.pub
+ 
 
 
 echo "Cleanup done !!!"

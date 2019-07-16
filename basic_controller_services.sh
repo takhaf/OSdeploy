@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #Default password  for rabbitmq
 if [ $# -eq 2 ]
 	then

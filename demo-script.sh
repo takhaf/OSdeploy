@@ -1,4 +1,4 @@
-
+#!/bin/bash
 if [ $# -eq 1 ]
 	then IP=$1
 else IP=`hostname -I |awk '{print $1}'`

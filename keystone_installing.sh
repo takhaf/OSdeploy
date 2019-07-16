@@ -1,4 +1,4 @@
-
+#!/bin/bash
 set +x
 
 pass=$1
