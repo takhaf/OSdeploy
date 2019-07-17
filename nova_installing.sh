@@ -114,7 +114,7 @@ crudini --set /etc/nova/nova.conf placement auth_type  password
 crudini --set /etc/nova/nova.conf placement user_domain_name  Default
 crudini --set /etc/nova/nova.conf placement auth_url http://controller:5000/v3
 crudini --set /etc/nova/nova.conf placement username  placement
-
+crudini --set /etc/nova/nova.conf placement password  $pass
 #Setting the refreshing interval for detecting compute nodes
 crudini --set /etc/nova/nova.conf scheduler discover_hosts_in_cells_interval 300
 
