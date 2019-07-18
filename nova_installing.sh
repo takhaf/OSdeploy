@@ -6,7 +6,7 @@ source admin-openrc
 pass=$1
 mgt_network_address=$2
 #Creating the databases and granting the privileges to the neutron profile
-mysql -u root --password=$pass<<EOF
+mysql<<EOF
 CREATE DATABASE nova_api;
 CREATE DATABASE nova;
 CREATE DATABASE nova_cell0;
@@ -115,6 +115,9 @@ crudini --set /etc/nova/nova.conf placement user_domain_name  Default
 crudini --set /etc/nova/nova.conf placement auth_url http://controller:5000/v3
 crudini --set /etc/nova/nova.conf placement username  placement
 crudini --set /etc/nova/nova.conf placement password  $pass
+
+#Discovering available hosts
+su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
 #Setting the refreshing interval for detecting compute nodes
 crudini --set /etc/nova/nova.conf scheduler discover_hosts_in_cells_interval 300
 
