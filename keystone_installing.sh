@@ -32,7 +32,17 @@ keystone-manage bootstrap --bootstrap-password $pass \
   --bootstrap-region-id RegionOne
 echo "ServerName controller" >> /etc/apache2/apache2.conf
 
-service apache2 restart
-source admin-openrc
+service apache2 keystone mysql restart
+service keystone restart
+service mysql restart
+
+export OS_USERNAME=admin
+export OS_PASSWORD=$pass
+export OS_PROJECT_NAME=admin
+export OS_USER_DOMAIN_NAME=Default
+export OS_PROJECT_DOMAIN_NAME=Default
+export OS_AUTH_URL=http://controller:5000/v3
+export OS_IDENTITY_API_VERSION=3
+
 openstack project create --domain default \
   --description "Service Project" service

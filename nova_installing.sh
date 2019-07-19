@@ -104,7 +104,7 @@ crudini --set /etc/nova/nova.conf glance api_servers http://controller:9292
 
 crudini --set /etc/nova/nova.conf oslo_concurrency lock_path /var/lib/nova/tmp 
 
-crudini --del /etc/nova/nova.conf default log_dir
+crudini --del /etc/nova/nova.conf DEFAULT log_dir
 
 
 crudini --set /etc/nova/nova.conf placement os_region_name  RegionOne
