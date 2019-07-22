@@ -1,5 +1,5 @@
 #!/bin/bash
-set +x
+set -x
 source admin-openrc
 pass=$1
 IP=$2
@@ -90,8 +90,8 @@ crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini linux_bridge physic
 crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini vxlan enable_vxlan true
 crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini vxlan local_ip $IP
 crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini vxlan l2_population true
-crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini security_group enable_security_group true
-crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini security_group firewall_driver neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
+crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini securitygroup enable_security_group true
+crudini --set /etc/neutron/plugins/ml2/linuxbridge_agent.ini securitygroup firewall_driver neutron.agent.linux.iptables_firewall.IptablesFirewallDriver
 
 crudini --set /etc/neutron/l3_agent.ini DEFAULT interface_driver linuxbridge
 crudini --set /etc/neutron/dhcp_agent.ini DEFAULT interface_driver linuxbridge
