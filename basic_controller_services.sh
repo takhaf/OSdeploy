@@ -1,11 +1,9 @@
 #!/bin/bash
+set -x
 
 #Default password  for rabbitmq
-if [ $# -eq 2 ]
-	then
-		pass=$1
-		mgt_network_address=$2
-fi
+pass=$1
+mgt_network_address=$2
 
 #Installing chrony for NTP service
 echo "Installing chrony ..."

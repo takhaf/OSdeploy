@@ -1,18 +1,18 @@
 #!/bin/bash
-set +x
+set -x
 source admin-openrc
 
 pass=$1
 
 #Creating the database and granting the necessary privileges for the glance account
 
-mysql -u root --password=$pass<<END
+mysql -u root --password=$pass<<EOF
 CREATE DATABASE glance;
 GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'localhost' 
 IDENTIFIED BY '$pass';
 GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'%' 
 IDENTIFIED BY '$pass';
-END
+EOF
 
 #creating the glance user and granting the admin privilege in the domain
 openstack user create --domain default --password $pass glance
@@ -55,6 +55,9 @@ crudini --set /etc/glance/glance-api.conf keystone_authtoken user_domain_name  D
 crudini --set /etc/glance/glance-api.conf keystone_authtoken project_name service
 crudini --set /etc/glance/glance-api.conf keystone_authtoken username glance
 crudini --set /etc/glance/glance-api.conf keystone_authtoken password $pass
+
+crudini --set /etc/glance/glance-api.conf paste_deploy flavor keystone
+
 
 crudini --set /etc/glance/glance-api.conf glance_store stores  "file,http"
 crudini --set /etc/glance/glance-api.conf glance_store default_store  file

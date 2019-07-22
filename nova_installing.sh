@@ -1,5 +1,5 @@
 #!/bin/bash
-set +x
+set -x
 source admin-openrc
 
 #Takes password and ip address as parameters

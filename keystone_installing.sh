@@ -1,5 +1,5 @@
 #!/bin/bash
-set +x
+set -x
 
 pass=$1
 
@@ -30,9 +30,10 @@ keystone-manage bootstrap --bootstrap-password $pass \
   --bootstrap-internal-url http://controller:5000/v3/ \
   --bootstrap-public-url http://controller:5000/v3/ \
   --bootstrap-region-id RegionOne
+
 echo "ServerName controller" >> /etc/apache2/apache2.conf
 
-service apache2 keystone mysql restart
+service apache2  restart
 service keystone restart
 service mysql restart
 
@@ -46,3 +47,5 @@ export OS_IDENTITY_API_VERSION=3
 
 openstack project create --domain default \
   --description "Service Project" service
+
+openstack token issue

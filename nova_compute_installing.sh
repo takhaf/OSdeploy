@@ -1,5 +1,5 @@
 #!/bin/bash
-set +x 
+set -x 
 
 pass=$1
 IP=$2
