@@ -29,6 +29,7 @@ apt install software-properties-common -y
 add-apt-repository cloud-archive:queens -y
 
 apt update && apt dist-upgrade -y
+apt update
 apt install python-openstackclient -y
 
 #Tool to manipulate INI files

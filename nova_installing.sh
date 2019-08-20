@@ -64,6 +64,11 @@ openstack endpoint create --region RegionOne placement admin http://controller:8
 
 
 #Installing the packages 
+
+#We have to add this repository again and reupdate to install all nova-packages for some reason
+add-apt-repository cloud-archive:queens -y
+apt update -y
+
 apt install -y nova-api nova-conductor nova-consoleauth \
   nova-novncproxy nova-scheduler nova-placement-api
 

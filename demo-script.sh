@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 if [ $# -eq 1 ]
 	then IP=$1
 else IP=`hostname -I |awk '{print $1}'`
@@ -12,7 +13,7 @@ wget http://download.cirros-cloud.net/0.4.0/cirros-0.4.0-x86_64-disk.img
 
 openstack image create "cirros" \
   --file cirros-0.4.0-x86_64-disk.img \
-  --disk-format qcow2 --container-format bare
+  --disk-format qcow2 --container-format bare --public
 
 #We create the provider network
 openstack network create  --share --external \
