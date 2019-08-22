@@ -1,0 +1,22 @@
+---
+
+- hosts: CO
+  tasks:
+  - name : 
+    shell: 
+     echo "{{ip_controller}}   controller ">> /etc/hosts
+  - name: Install software-properties-common
+    apt:
+     name: software-properties-common
+     state: present
+  - name : add repository
+    shell:
+     add-apt-repository cloud-archive:queens -y
+  - name: update and upgrade node 
+    apt:
+     upgrade: dist
+     state: latest
+  - name: Install python and crudini
+    apt: 
+     name: python-openstackclient,crudini
+     state: present

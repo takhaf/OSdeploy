@@ -1,0 +1,8 @@
+---
+- hosts: CO
+
+- import_playbook: requirements.yml ip_controller='{{controller_ip_address}}'
+
+- import_playbook: nova_compute_installing.yml password='{{password}}'  ip_address='{{ip_address}}'
+
+- import_playbook: neutron_compute_installing.yml password='{{password}}' ip_address='{{ip_address}}' interface='{{interface}}'
