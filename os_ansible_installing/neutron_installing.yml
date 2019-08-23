@@ -1,9 +1,16 @@
 ---
 
+<<<<<<< HEAD
 - hosts: '{{host}}'
   tasks:
   - name : Create neutron database and service
     shell: |
+=======
+- hosts: controller
+  tasks:
+ - name : Create neutron database and service
+   shell: |
+>>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
      mysql -u root --password={{password}}	<<END
      CREATE DATABASE neutron;
 
@@ -28,12 +35,29 @@
 
      openstack endpoint create --region RegionOne \
      network admin http://controller:9696
+<<<<<<< HEAD
   - name: install neutron package
     apt:
      name: neutron-server,neutron-plugin-ml2,neutron-linuxbridge-agent,neutron-l3-agent,neutron-dhcp-agent,neutron-metadata-agent
      state: present
   - name: Configure the service and bootstrap it
     shell: |
+=======
+ - name: install neutron package
+   apt:
+     name: neutron-server,neutron-plugin-ml2,neutron-linuxbridge-agent,neutron-l3-agent,neutron-dhcp-agent,neutron-metadata-agent
+     state: present
+ - name: Configure the service and bootstrap it
+   shell: |
+     cp conf_files/etc_neutron_neutron.conf /etc/neutron/neutron.conf
+     cp conf_files/etc_neutron_plugins_ml2_ml2_conf.ini /etc/neutron/plugins/ml2/ml2_conf.ini
+     cp conf_files/etc_neutron_plugins_ml2_linuxbridge_agent.ini /etc/neutron/plugins/ml2/linuxbridge_agent.ini
+     cp conf_files/etc_neutron_l3_agent.ini /etc/neutron/l3_agent.ini
+     cp conf_files/etc_neutron_dhcp_agent.ini /etc/neutron/dhcp_agent.ini
+     cp conf_files/etc_neutron_metadata_agent.ini /etc/neutron/metadata_agent.ini
+
+
+>>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
      crudini --set /etc/neutron/neutron.conf database connection  mysql+pymysql://neutron:{{password}}@controller/neutron
 
      crudini --set /etc/neutron/neutron.conf DEFAULT core_plugin ml2

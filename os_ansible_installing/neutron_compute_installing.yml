@@ -1,6 +1,10 @@
 ---
  
+<<<<<<< HEAD
 - hosts: '{{host}}'
+=======
+- hosts: CO
+>>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
   tasks:
   - name : Installing the package
     apt:
@@ -8,6 +12,11 @@
      state: present
   - name : Configuring the service
     shell: |
+<<<<<<< HEAD
+=======
+      cp conf_files/etc_neutron_plugins_ml2_linuxbridge_agent.ini /etc/neutron/plugins/ml2/linuxbridge_agent.ini
+ 
+>>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
       crudini --set /etc/neutron/neutron.conf DEFAULT	transport_url rabbit://openstack:{{password}}@controller
       crudini --set /etc/neutron/neutron.conf DEFAULT	auth_strategy keystone
  

@@ -1,6 +1,10 @@
 ---
 
+<<<<<<< HEAD
 - hosts: '{{host}}'
+=======
+- hosts: controller
+>>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
   tasks:
   - name: Install chrony
     apt:
@@ -57,7 +61,11 @@
 
   - name: Configure memcached
     shell : |
+<<<<<<< HEAD
      echo "-l {{ip_address}}"  > /etc/memcached.conf
+=======
+     echo "-l ${{ip_address}}"  > /etc/memcached.conf
+>>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
      service memcached restart
 
   - name: Install etcd

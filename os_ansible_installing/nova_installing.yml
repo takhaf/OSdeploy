@@ -1,6 +1,10 @@
 ---
 
+<<<<<<< HEAD
 - hosts: '{{host}}'
+=======
+- hosts: controller
+>>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
   tasks:
   - name : create nova database, openstack compute service and endpoints
     shell : |
@@ -64,6 +68,10 @@
      state : present
   - name: Configuring service and bootstraping the service
     shell: |
+<<<<<<< HEAD
+=======
+     cp conf_files/etc_nova_nova.conf /etc/nova/nova.conf
+>>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
      crudini --set /etc/nova/nova.conf api_database connection mysql+pymysql://nova:{{password}}@controller/nova_api
 
      crudini --set /etc/nova/nova.conf database connection mysql+pymysql://nova:{{password}}@controller/nova

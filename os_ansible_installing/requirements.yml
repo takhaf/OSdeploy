@@ -1,6 +1,10 @@
 ---
 
+<<<<<<< HEAD
 - hosts: '{{host}}'
+=======
+- hosts: CO
+>>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
   tasks:
   - name : 
     shell: 
@@ -9,7 +13,10 @@
   - name: Install software-properties-common
     apt:
      name: software-properties-common
+<<<<<<< HEAD
      state: present
+=======
+>>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
   - name : add repository
     shell:
      add-apt-repository cloud-archive:queens -y

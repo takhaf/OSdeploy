@@ -1,5 +1,6 @@
 ---
 
+<<<<<<< HEAD
 - import_playbook: requirements.yml ip_controller='{{ip_address}}' host='{{host}}'
 
 - import_playbook: basic_controller_services.yml password='{{password}}' ip_address='{{ip_address}}' host='{{host}}'
@@ -11,5 +12,18 @@
 - import_playbook: nova_installing.yml password='{{password}}' controller_ip_address='{{ip_address}}' host='{{host}}'
 
 - import_playbook: neutron_installing.yml password='{{password}}' ip_address='{{ip_address}}' interface='{{interface}}' host='{{host}}'
+=======
+- import_playbook: requirements.yml ip_controller='{{ip_address}}'
+
+- import_playbook: basic_controller_services.yml password='{{password}}' ip_address='{{ip_address}}'
+
+- import_playbook: keystone_installing.yml password='{{password}}'
+
+- import_playbook: glance_installing.yml password='{{password}}'
+
+- import_playbook: nova_installing password='{{password}}' ip_address='{{controller_ip_address}}' 
+
+- import_playbook: neutron_installing password='{{password}}' ip_address='{{ip_address}}' interface='{{interface}}'
+>>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
 
 
