@@ -1,10 +1,6 @@
 ---
 
-<<<<<<< HEAD
 - hosts: '{{host}}'
-=======
-- hosts: CO
->>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
   tasks:
   - name : installing nova compute packages
     apt:
@@ -12,12 +8,6 @@
      state: present
   - name: configuring compute
     shell: |
-<<<<<<< HEAD
-=======
-     cp conf_files/etc_nova_nova-compute.conf /etc/nova/nova-compute.conf
-
-
->>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
      crudini --set /etc/nova/nova.conf DEFAULT transport_url rabbit://openstack:{{password}}@controller
      crudini --set /etc/nova/nova.conf api auth_strategy keystone
      crudini --set /etc/nova/nova.conf keystone_authtoken auth_url  http://controller:5000/v3

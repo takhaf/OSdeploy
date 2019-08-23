@@ -1,18 +1,10 @@
 ---
 
-<<<<<<< HEAD
 - hosts : '{{host}}'
-=======
-- hosts : controller
->>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
   tasks:
    - name : Creating the keystone database user and granting privileges
      shell: |
       mysql <<EOF 
-<<<<<<< HEAD
-=======
-
->>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
       GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' 
       IDENTIFIED BY '{{password}}';
       GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' 
@@ -22,14 +14,8 @@
      apt: 
       name: keystone,apache2,libapache2-mod-wsgi
       state: present
-<<<<<<< HEAD
    - name : Configuring the files and initiating the project
      shell: |
-=======
-   - name : Configuring the files and initiating the proect
-     shell: |
-      cp conf_files/etc_keystone_keystone.conf /etc/keystone/keystone.conf
->>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
       crudini --set /etc/keystone/keystone.conf database connection  mysql+pymysql://keystone:{{password}}@controller/keystone
       crudini --set /etc/keystone/keystone.conf token provider fernet
       su -s /bin/sh -c "keystone-manage db_sync" keystone

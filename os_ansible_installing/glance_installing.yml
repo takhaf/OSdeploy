@@ -1,15 +1,9 @@
 ---
 
-<<<<<<< HEAD
 - hosts: '{{host}}'
   tasks:
   - name : create glance database, openstack image service and endpoints
     shell : |
-=======
-- hosts: controller
- - name : create glance database, openstack image service and endpoints
-   shell : |
->>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
      mysql -u root --password={{password}}<<EOF
      CREATE DATABASE glance;
      GRANT ALL PRIVILEGES ON glance.* TO 'glance'@'localhost' 
@@ -31,24 +25,12 @@
 
      openstack endpoint create --region RegionOne \
      image admin http://controller:9292
-<<<<<<< HEAD
   - name: install glance package
     apt:
      name: glance
      state: present
   - name : configure glance and bootstrrap the service
     shell: |
-=======
- - name: install glance package
-   apt:
-     name: glance
-     state: present
- - name : configure glance and bootstrrap the service
-   shell: |
-     cp conf_files/etc_glance_glance-api.conf /etc/glance/glance-api.conf
-     cp conf_files/etc_glance_glance-registry.conf /etc/glance/glance-registry.conf
-
->>>>>>> fcf5928dec70ab3fd77188767ade3ffae110c093
      crudini --set /etc/glance/glance-api.conf database connection "mysql+pymysql://glance:{{password}}@controller/glance"
 
      crudini --set /etc/glance/glance-api.conf keystone_authtoken auth_uri  http://controller:5000
