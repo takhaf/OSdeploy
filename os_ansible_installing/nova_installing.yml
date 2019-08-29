@@ -46,7 +46,7 @@
      compute admin http://controller:8774/v2.1
 
 
-     openstack user create --domain default --password {{password}} placement0
+     openstack user create --domain default --password {{password}} placement
 
      openstack role add --project service --user placement admin
 
@@ -65,7 +65,7 @@
 
   - name: move in lightened conf files
     copy:
-     src: cp conf_files/etc_nova_nova.conf
+     src: conf_files/etc_nova_nova.conf
      dest: /etc/nova/nova.conf
 
 
