@@ -62,6 +62,13 @@
     apt:
      name : nova-api,nova-conductor,nova-consoleauth,nova-novncproxy,nova-scheduler,nova-placement-api
      state : present
+
+  - name: move in lightened conf files
+    copy:
+     src: cp conf_files/etc_nova_nova.conf
+     dest: /etc/nova/nova.conf
+
+
   - name: Configuring service and bootstraping the service
     shell: |
      crudini --set /etc/nova/nova.conf api_database connection mysql+pymysql://nova:{{password}}@controller/nova_api

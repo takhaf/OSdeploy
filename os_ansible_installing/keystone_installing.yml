@@ -14,6 +14,12 @@
      apt: 
       name: keystone,apache2,libapache2-mod-wsgi
       state: present
+
+   - name: move in lightened conf files
+     copy:
+      src: conf_files/etc_keystone_keystone.conf
+      dest: /etc/keystone/keystone.conf
+
    - name : Configuring the files and initiating the project
      shell: |
       crudini --set /etc/keystone/keystone.conf database connection  mysql+pymysql://keystone:{{password}}@controller/keystone

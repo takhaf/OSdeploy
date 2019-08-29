@@ -6,6 +6,12 @@
     apt:
      name: neutron-linuxbridge-agent
      state: present
+
+  - name: move in lightened conf files
+    copy:
+     src: conf_files/etc_neutron_plugins_ml2_linuxbridge_agent.ini
+     dest: /etc/neutron/plugins/ml2/linuxbridge_agent.ini 
+
   - name : Configuring the service
     shell: |
       crudini --set /etc/neutron/neutron.conf DEFAULT	transport_url rabbit://openstack:{{password}}@controller

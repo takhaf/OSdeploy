@@ -4,7 +4,7 @@ The entry point is the install.sh script.
 
 -----------------How to Use IT ? --------------------
 execute the script install.sh in the project's directory like  this : 
-install.sh  'global password '    'IP address '  'controller/compute'  'Management interface'
+install.sh  'global password '    'controller/compute/both' ['IP address ']   ['Management interface']
 
 It installs all the necessary components in the OpenStack architecture.
 

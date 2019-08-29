@@ -25,10 +25,23 @@
 
      openstack endpoint create --region RegionOne \
      image admin http://controller:9292
+
   - name: install glance package
     apt:
      name: glance
      state: present
+
+  - name: move in lightened conf files
+    copy:
+     src: conf_files/etc_glance_glance-api.conf
+     dest: /etc/glance/glance-api.conf
+
+  - name: move in lightened conf files
+    copy:
+     src: conf_files/etc_glance_glance-registry.conf
+     dest: /etc/glance/glance-registry.conf 
+
+
   - name : configure glance and bootstrrap the service
     shell: |
      crudini --set /etc/glance/glance-api.conf database connection "mysql+pymysql://glance:{{password}}@controller/glance"

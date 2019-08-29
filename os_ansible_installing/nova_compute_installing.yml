@@ -6,6 +6,13 @@
     apt:
      name: nova-compute
      state: present
+
+  - name: move in lightened conf files
+    copy:
+     src: conf_files/etc_nova_nova-compute.conf
+     dest: /etc/nova/nova-compute.conf
+
+
   - name: configuring compute
     shell: |
      crudini --set /etc/nova/nova.conf DEFAULT transport_url rabbit://openstack:{{password}}@controller
