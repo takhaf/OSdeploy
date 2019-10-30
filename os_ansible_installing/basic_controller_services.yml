@@ -57,7 +57,10 @@
 
   - name: Configure memcached
     shell : |
-     echo "-l {{ip_address}}"  > /etc/memcached.conf
+     echo "-u memcache
+     -d
+     -p 11211
+     -l {{ip_address}}"  > /etc/memcached.conf
      service memcached restart
 
   - name: Install etcd

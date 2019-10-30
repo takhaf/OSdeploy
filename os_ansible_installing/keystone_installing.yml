@@ -5,6 +5,7 @@
    - name : Creating the keystone database user and granting privileges
      shell: |
       mysql <<EOF 
+      CREATE DATABASE keystone;
       GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'localhost' 
       IDENTIFIED BY '{{password}}';
       GRANT ALL PRIVILEGES ON keystone.* TO 'keystone'@'%' 

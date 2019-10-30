@@ -29,6 +29,14 @@
 
      EOF
 
+     export OS_USERNAME=admin
+     export OS_PASSWORD={{password}}
+     export OS_PROJECT_NAME=admin
+     export OS_USER_DOMAIN_NAME=Default
+     export OS_PROJECT_DOMAIN_NAME=Default
+     export OS_AUTH_URL=http://controller:5000/v3
+     export OS_IDENTITY_API_VERSION=3
+
      openstack user create --domain default --password {{password}} nova
 
      openstack role add --project service --user nova admin
@@ -57,6 +65,10 @@
      openstack endpoint create --region RegionOne placement internal http://controller:8778
 
      openstack endpoint create --region RegionOne placement admin http://controller:8778
+
+  - name: update node 
+    apt:
+     update_cache: yes
 
   - name: install nova packages
     apt:
@@ -113,8 +125,6 @@
      crudini --set /etc/nova/nova.conf placement auth_url http://controller:5000/v3
      crudini --set /etc/nova/nova.conf placement username  placement
      crudini --set /etc/nova/nova.conf placement password  {{password}}
-
-     su -s /bin/sh -c "nova-manage cell_v2 discover_hosts --verbose" nova
 
      crudini --set /etc/nova/nova.conf scheduler discover_hosts_in_cells_interval 300
 
