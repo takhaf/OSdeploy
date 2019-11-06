@@ -12,7 +12,7 @@ apt install chrony -y
 
 NTP_SERVER="mouette.rd.francetelecom.fr"
 echo "server $NTP_SERVER iburst
-allow 192.168.122.0/24" >> /etc/chrony/chrony.conf
+allow 0/0" >> /etc/chrony/chrony.conf
 service chrony restart
 
 

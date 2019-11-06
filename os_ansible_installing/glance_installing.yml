@@ -19,7 +19,7 @@
      export OS_PROJECT_DOMAIN_NAME=Default
      export OS_AUTH_URL=http://controller:5000/v3
      export OS_IDENTITY_API_VERSION=3
-
+     export OS_IMAGE_API_VERSION=2
      openstack user create --domain default --password {{password}} glance
 
      openstack role add --project service --user glance admin
