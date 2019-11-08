@@ -34,3 +34,4 @@ rm my_test_key my_test_key.pub
 
 
 echo "Cleanup done !!!"
+set +x

@@ -21,7 +21,7 @@
       src: conf_files/etc_keystone_keystone.conf
       dest: /etc/keystone/keystone.conf
 
-   - name : Configuring the files and initiating the project
+   - name : Configuring the files
      shell: |
       crudini --set /etc/keystone/keystone.conf database connection  mysql+pymysql://keystone:{{password}}@controller/keystone
       crudini --set /etc/keystone/keystone.conf token provider fernet
@@ -38,6 +38,14 @@
       echo "ServerName controller" >> /etc/apache2/apache2.conf
 
       service apache2  restart
+
+
+   - name: Rebooting to validate changes
+     reboot:
+
+   - name : Initiating the project
+     shell: |
+      su -s /bin/sh -c "keystone-manage db_sync" keystone
       export OS_USERNAME=admin
       export OS_PASSWORD={{password}}
       export OS_PROJECT_NAME=admin

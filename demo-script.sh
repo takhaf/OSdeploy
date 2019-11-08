@@ -74,5 +74,4 @@ openstack server create --flavor m1.nano --image cirros \
 openstack server create --flavor m1.nano --image cirros \
   --nic net-id=$net_id2 --security-group my_security_group \
   --key-name my_test_key test_selfservice-instance2
-
-
+set +x

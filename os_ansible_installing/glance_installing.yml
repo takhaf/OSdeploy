@@ -51,7 +51,7 @@
      dest: /etc/glance/glance-registry.conf 
 
 
-  - name : configure glance and bootstrrap the service
+  - name : configure glance and bootstrap the service
     shell: |
      crudini --set /etc/glance/glance-api.conf database connection "mysql+pymysql://glance:{{password}}@controller/glance"
 
